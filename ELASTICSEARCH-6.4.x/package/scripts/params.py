@@ -4,7 +4,7 @@
 Elasticsearch Params configurations
 """
 
-from resource_management.libraries.functions.version import format_hdp_stack_version, compare_versions
+from resource_management.libraries.functions.version import compare_versions
 from resource_management import *
 import status_params
 import os
@@ -15,7 +15,7 @@ config = Script.get_config()
 
 java64_home = config['hostLevelParams']['java_home']
 
-hostname = config['hostname']
+hostname = config['configurations']['elasticsearch-config']['discovery.zen.ping.unicast.hosts']
 
 
 # es env
@@ -47,7 +47,7 @@ jvm_opts = config['configurations']['elasticsearch-env']['jvm.opts']
 
 # es config
 cluster_name = config['configurations']['elasticsearch-config']['cluster.name']
-hostname = config['hostname']
+hostname = config['configurations']['elasticsearch-config']['discovery.zen.ping.unicast.hosts']
 node_attr_rack = config['configurations']['elasticsearch-config']['node.attr.rack']
 
 data_dir = config['configurations']['elasticsearch-config']['path.data']
