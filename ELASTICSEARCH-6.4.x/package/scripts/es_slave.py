@@ -30,7 +30,16 @@ class ESSlave(Script):
                  ignore_failures=True
                  )
 
-        # Create directories
+        # Create master directories    
+        Directory([params.es_master_base_dir, params.es_master_log_dir, params.es_master_pid_dir],
+                  mode=0755,
+                  cd_access='a',
+                  owner=params.es_user,
+                  group=params.es_group,
+                  create_parents=True
+                  )
+        
+        # Create slave directories
         Directory([params.es_slave_base_dir, params.es_slave_log_dir, params.es_slave_pid_dir],
                   mode=0755,
                   cd_access='a',
